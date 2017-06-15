@@ -231,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             customer.setFbId(profile.getId());
 
         BeanFactory.setCustomer(customer);
-        loginButton.setVisibility(View.INVISIBLE);
+        //loginButton.setVisibility(View.INVISIBLE);
         mAuthTask = new UserLoginTask(this);
         mAuthTask.execute((Void) null);
 
