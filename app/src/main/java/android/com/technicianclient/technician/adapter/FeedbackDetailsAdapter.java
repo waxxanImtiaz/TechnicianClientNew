@@ -1,6 +1,8 @@
 package android.com.technicianclient.technician.adapter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,9 @@ public class FeedbackDetailsAdapter extends BaseAdapter {
     public FeedbackDetailsAdapter(Activity context, List<Feedback> feedbacks) {
         this.context = context;
         this.feedbacks = feedbacks;
-        inflater = context.getLayoutInflater();
+        inflater = (LayoutInflater) context.
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Log.v("feedback","feed");
     }
 
     @Override
@@ -46,20 +50,26 @@ public class FeedbackDetailsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
         view = inflater.inflate(R.layout.feedback_details_item, null);//set layout for displaying items
 
-        TextView tvId = (TextView) view.findViewById(R.id.tvId);
-        TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
-        TextView tvFeedback = (TextView) view.findViewById(R.id.tvFeedback);
-        TextView tvRecomended = (TextView) view.findViewById(R.id.tvRecomended);
+        try {
+            TextView tvId = (TextView) view.findViewById(R.id.tvId);
+            TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
+            TextView tvFeedback = (TextView) view.findViewById(R.id.tvFeedback);
+            TextView tvRecomended = (TextView) view.findViewById(R.id.tvRecomended);
 
+            Log.v("feedback", "feed");
 
-        Feedback history = feedbacks.get(i);
-        tvId.setText(history.getId());
-        tvDate.setText(history.getDate());
-        tvFeedback.setText(history.getFeedback());
-        tvRecomended.setText(history.getRecomended());
-
+            Feedback history = feedbacks.get(i);
+            tvId.setText(history.getId());
+            tvDate.setText(history.getDate());
+            tvFeedback.setText(history.getFeedback());
+            tvRecomended.setText(history.getRecomended());
+        }catch (Exception e){
+            Log.v("exception", "feed "+e.getMessage());
+            e.printStackTrace();
+        }
         return view;
     }
 }

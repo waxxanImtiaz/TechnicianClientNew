@@ -50,7 +50,7 @@ public class MyAccount extends AppCompatActivity {
 
         listPayDetails = (ListView) findViewById(R.id.listPayDetails);
         listServicesDetails = (ListView) findViewById(R.id.listServicesDetails);
-        listFeedbackDetails = (ListView) findViewById(R.id.listServicesDetails);
+        listFeedbackDetails = (ListView) findViewById(R.id.feedbackDetails);
         customer = BeanFactory.getCustomer();
 
         tvEmail.setText(customer.getEmail());
@@ -75,14 +75,13 @@ public class MyAccount extends AppCompatActivity {
                 listPayDetails.setVisibility(View.GONE);
             } else {
                 PymentHistoryAdapter adapter = new PymentHistoryAdapter(MyAccount.this, paymentHistories);
-
                 listPayDetails.setAdapter(adapter);
             }
 
             List<Service> services = BeanFactory.getService();
 
             Log.i("services", "services size=" + services.size()+",feedback size="+BeanFactory.getFeedbacks().size());
-            if (services == null || services.size() <= 0) {
+            if (services.size() <= 0) {
                 findViewById(R.id.tvServiceDetails).setVisibility(View.GONE);
                 listServicesDetails.setVisibility(View.GONE);
             } else {
@@ -92,11 +91,12 @@ public class MyAccount extends AppCompatActivity {
 
             List<Feedback> feedbacks = BeanFactory.getFeedbacks();
 
-            Log.i("feedback", "ff size=" + feedbacks.size());
-            if (feedbacks == null || feedbacks.size() <= 0) {
+
+            if ( feedbacks.size() <= 0) {
                 findViewById(R.id.tvFeedback).setVisibility(View.GONE);
                 listFeedbackDetails.setVisibility(View.GONE);
             } else {
+
                 FeedbackDetailsAdapter adapter = new FeedbackDetailsAdapter(MyAccount.this, feedbacks);
                 listFeedbackDetails.setAdapter(adapter);
             }

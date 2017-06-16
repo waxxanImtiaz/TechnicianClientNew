@@ -159,7 +159,7 @@
             <ListView
                 android:id="@+id/listPayDetails"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp" />
 
             <!--SERVICES DETAILS-->
@@ -173,7 +173,7 @@
             <ListView
                 android:id="@+id/listServicesDetails"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp" />
 
             <!--FEEDBACK DETAILS-->
@@ -187,7 +187,7 @@
             <ListView
                 android:id="@+id/feedbackDetails"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp" />
 
 
