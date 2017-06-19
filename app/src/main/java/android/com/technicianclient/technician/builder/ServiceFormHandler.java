@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.com.technicianclient.technician.ServiceFragment;
 import android.com.technicianclient.technician.contentprovider.SharedFields;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -47,10 +48,13 @@ public class ServiceFormHandler  extends ServerConnectionBuilder {
             StringBuilder sj = new StringBuilder();
 
             System.out.println("prameters:parameters are set");
+
             for (Map.Entry<String, String> entry : arguments.entrySet()) {
                 sj.append(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8") + "&");
             }
             sj.deleteCharAt(sj.length()-1);
+
+            Log.v("parameters_servies",sj.toString());
             byte[] out = sj.toString().getBytes();
 
             this.connect();
@@ -78,7 +82,7 @@ public class ServiceFormHandler  extends ServerConnectionBuilder {
 
                 in.close();
 
-
+                Log.v("parameters_servies",response.toString());
                 return response.toString();
             } catch (Exception e) {
                 e.printStackTrace();
