@@ -47,6 +47,8 @@
             style="@style/et_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
             android:hint="@string/full_name" />
         <!--&lt;!&ndash; Password&ndash;&gt;-->
         <!--<TextView-->
@@ -62,6 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
             android:inputType="textPassword"
 
             />
@@ -80,6 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password_hint"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
             android:inputType="textPassword" />
         <!--&lt;!&ndash; Contact Number&ndash;&gt;-->
         <!--<TextView-->
@@ -92,10 +98,12 @@
         <AutoCompleteTextView
             android:id="@+id/et_email"
             style="@style/et_sign_up"
-            android:inputType="textWebEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_hint" />
+            android:hint="@string/email_hint"
+            android:imeOptions="actionNext"
+            android:inputType="textWebEmailAddress"
+            android:maxLines="1" />
         <!--&lt;!&ndash; Contact Number&ndash;&gt;-->
         <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -111,6 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="11"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
             android:hint="@string/contact_number_hint" />
 
         <!--&lt;!&ndash;Gender&ndash;&gt;-->
@@ -214,7 +224,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-
             android:id="@+id/tvLoginStatus"
             />
         <Button

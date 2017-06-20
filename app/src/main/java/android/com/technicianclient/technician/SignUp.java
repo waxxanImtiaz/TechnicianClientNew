@@ -148,13 +148,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 if (oldProfile != null) {
                     profile = oldProfile;
                     //intiRequest();
-                    tvLoginStatus.setText(String.valueOf("Welcome onCurrentProfileChanged," + oldProfile.getFirstName()));
+                    tvLoginStatus.setText(String.valueOf(oldProfile.getFirstName()+" you are already regirstered"));
 
                 }
                 if (newProfile != null) {
                     profile = newProfile;
                     //intiRequest();
-                    tvLoginStatus.setText(String.valueOf("Welcome onCurrentProfileChanged," + newProfile.getFirstName()));
+                    tvLoginStatus.setText(String.valueOf( newProfile.getFirstName()+" you are already regirstered"));
 
                 }
 
@@ -283,20 +283,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             etEmail.setError("Enter email");
             return;
         }
-
-        if (TextUtils.isEmpty(etMobile.getText().toString())) {
-            etMobile.setError("Enter Mobile number");
-            return;
-        }
-
         if (!SharedMethods.isValidEmailAddress(etEmail.getText().toString())) {
             etEmail.setError("Invalid email address");
+            return;
+        }
+        if (TextUtils.isEmpty(etMobile.getText().toString())) {
+            etMobile.setError("Enter Mobile number");
             return;
         }
         if (!SharedMethods.validatePhoneNumber(etMobile.getText().toString())) {
             etMobile.setError("Invalid phone number");
             return;
         }
+
+
+
 
 
         if (!TextUtils.equals(etPassword.getText().toString(),etConformPassword.getText().toString())){

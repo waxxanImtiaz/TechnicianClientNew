@@ -27,7 +27,7 @@ public class SharedMethods {
             return false;
 
 
-        if (!phoneNo.startsWith("03") || !phoneNo.startsWith("92") || !phoneNo.startsWith("+92"))
+        if (!phoneNo.startsWith("03") )
             return false;
         if (matcher.matches()) {
             return true;
