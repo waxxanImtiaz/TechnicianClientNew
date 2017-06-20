@@ -109,6 +109,10 @@ public class ServiceFragment extends Fragment {
             this.phone.setError("Please enter phone number");
             return;
         }
+        if (!SharedMethods.validatePhoneNumber(phone)){
+            this.phone.setError("Invalid phone number");
+            return;
+        }
 //        if (remarks.isEmpty()) {
 //            UiController.showDialog("Please enter your message",getActivity());
 //            return;

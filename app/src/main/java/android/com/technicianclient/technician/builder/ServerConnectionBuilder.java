@@ -33,6 +33,7 @@ public abstract class ServerConnectionBuilder {
             http = (HttpURLConnection) con;
             http.setRequestMethod(reqMethod); // PUT is another valid option
             http.setDoOutput(true);
+            http.setConnectTimeout(CONNECTION_TIME_OUT);
         }catch (MalformedURLException e){
             Log.d(SharedFields.DEBUG_MESSAGE,"exception:"+e.getMessage());
         }catch (IOException e){

@@ -58,9 +58,10 @@ public class ServiceFormHandler  extends ServerConnectionBuilder {
             byte[] out = sj.toString().getBytes();
 
             this.connect();
+
             http.setFixedLengthStreamingMode(out.length);
             http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            http.setConnectTimeout(CONNECTION_TIME_OUT);
+
             http.connect();
             try {
                 DataOutputStream wr = new DataOutputStream(http.getOutputStream());

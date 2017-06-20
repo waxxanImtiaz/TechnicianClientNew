@@ -45,7 +45,6 @@
     </style>
     <!--<item name="android:textSize">@dimen/et_text_color</item>-->
     <style name="et_style">
-
         <item name="android:padding">@dimen/et_padding</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
     </style>
