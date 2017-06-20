@@ -2,38 +2,42 @@ package android.com.technicianclient.technician.contentprovider;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import android.com.technicianclient.technician.mail.GMailSender;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Admin on 5/23/2017.
  */
 
 public class SharedMethods {
-    public static boolean isValidEmailAddress(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-    }
 
     public static boolean validatePhoneNumber(String phoneNo) {
-//        //validate phone numbers of format "1234567890"
-//        if (phoneNo.matches("\\d{10}")) return true;
-//            //validating phone number with -, . or spaces
-//        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
-//            //validating phone number with extension length from 3 to 5
-//        else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
-//            //validating phone number where area code is in braces ()
-//        else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
-//            //return false if nothing matches the input
-//        else return false;
-        if (phoneNo.length() == 11)
+        String regex = "^\\+?[0-9. ()-]{10,25}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNo);
+
+        if(phoneNo.length() < 11 || phoneNo.length() > 11)
+            return false;
+
+
+        if (!phoneNo.startsWith("03"))
+            return false;
+        if (matcher.matches()) {
             return true;
-        return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 
     }
 

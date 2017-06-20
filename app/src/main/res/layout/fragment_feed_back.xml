@@ -53,6 +53,7 @@
                     android:inputType="phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="11"
                     android:background="@drawable/et_search"
                     android:hint="@string/phone_place_holder" />
 
