@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private File sharedPrefFile;
     private String m_Text;
+    private String[] points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,6 +204,10 @@ public class MainActivity extends AppCompatActivity
             UserInfoService service  = new UserInfoService(this);
             service.execute();
             return true;
+        }  else if (id == R.id.reward_points) {
+            points = new String[]{"1","2","3","4","5","6","7","8","9","10"};
+            showRewardDialog();
+            return true;
         } else if (id == R.id.contact_us) {
             tabLayout.getTabAt(2).select();
             return true;
@@ -283,6 +288,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        builder.show();
+    }
+
+    public  void showRewardDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Reward Points");
+        builder.setItems(points, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // the user clicked on colors[which]
+            }
+        });
         builder.show();
     }
 }
