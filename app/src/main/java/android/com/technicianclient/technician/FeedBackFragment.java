@@ -116,6 +116,11 @@ public class FeedBackFragment extends Fragment {
             this.phone.setError("Please enter phone number");
             return;
         }
+
+        if (!SharedMethods.validatePhoneNumber(phone)){
+            this.phone.setError("Invalid phone number");
+            return;
+        }
 //        if (email.isEmpty()) {
 //            this.email.setError("Please enter email address");
 //            return;
