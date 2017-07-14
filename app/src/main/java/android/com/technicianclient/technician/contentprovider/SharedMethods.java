@@ -47,7 +47,7 @@ public class SharedMethods {
 
 // Set up the input
         final EditText input = new EditText(activity);
-        input.setPadding(10,10,10,10,);
+        input.setPadding(10,10,10,10);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         builder.setView(input);
