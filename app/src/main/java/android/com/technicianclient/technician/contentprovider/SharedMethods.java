@@ -1,13 +1,18 @@
 package android.com.technicianclient.technician.contentprovider;
 
 import android.app.Activity;
+import android.com.technicianclient.technician.controller.DialogInnerIntializer;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import android.com.technicianclient.technician.mail.GMailSender;
+import android.widget.EditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +40,35 @@ public class SharedMethods {
             return false;
         }
     }
+    public static String showInputDialog(Activity activity , final DialogInnerIntializer innerIntializer) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Enter email");
+
+// Set up the input
+        final EditText input = new EditText(activity);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                innerIntializer.execute(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setCancelable(false);
+        builder.show();
+        return input.getText().toString();
+    }
     public static boolean isValidEmailAddress(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 

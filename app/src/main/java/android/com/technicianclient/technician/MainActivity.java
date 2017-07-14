@@ -1,6 +1,9 @@
 package android.com.technicianclient.technician;
 
 import android.Manifest;
+import android.app.Activity;
+import android.com.technicianclient.technician.contentprovider.SharedMethods;
+import android.com.technicianclient.technician.controller.DialogInnerIntializer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -212,7 +215,12 @@ public class MainActivity extends AppCompatActivity
             tabLayout.getTabAt(2).select();
             return true;
         } else if (id == R.id.bind_email) {
-            showInputDialog();
+            m_Text = SharedMethods.showInputDialog(this, new DialogInnerIntializer() {
+                @Override
+                public void execute(String input) {
+
+                }
+            });
             return true;
         } else if (id == R.id.sign_out) {
 
@@ -264,32 +272,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Enter email");
 
-// Set up the input
-        final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        builder.setView(input);
-
-// Set up the buttons
-        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                m_Text = input.getText().toString();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
 
     public  void showRewardDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

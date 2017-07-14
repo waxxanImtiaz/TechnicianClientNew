@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.com.technicianclient.technician.controller.DialogInnerIntializer;
+import android.com.technicianclient.technician.services.ForgetPasswordService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private ProfileTracker profileTracker;
     private Profile profile;
     private ProgressDialog progressDialog2;
+    private TextView tvForgetPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +112,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+        tvForgetPassword = (TextView)findViewById(R.id.tvForgetPassword);
+
+        tvForgetPassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedMethods.showInputDialog(LoginActivity.this, new DialogInnerIntializer() {
+
+                    @Override
+                    public void execute(String input) {
+                        ForgetPasswordService service = new ForgetPasswordService(LoginActivity.this);
+                        service.execute(input);
+                    }
+                });
+
+
+            }
+        });
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
