@@ -115,6 +115,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         tvForgetPassword = (TextView)findViewById(R.id.tvForgetPassword);
 
+        SharedFields.isExited = false;
+
         tvForgetPassword.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

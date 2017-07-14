@@ -88,6 +88,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
 
+        SharedFields.isExited = false;
+
         city = String.valueOf(1);
         // Gender Drop down elements
         List<String> gender = new ArrayList<>();

@@ -1,5 +1,6 @@
 package android.com.technicianclient.technician;
 
+import android.com.technicianclient.technician.contentprovider.SharedFields;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class MyAccount extends AppCompatActivity {
         tvMobileNumber = (TextView) findViewById(R.id.tvMobileNumber);
 
 
-
+        SharedFields.isExited = false;
 //        listPayDetails = (ListView) findViewById(R.id.listPayDetails);
 //        listServicesDetails = (ListView) findViewById(R.id.listServicesDetails);
 //        listFeedbackDetails = (ListView) findViewById(R.id.feedbackDetails);

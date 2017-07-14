@@ -16,6 +16,8 @@ public class SharedFields {
     public static  final int CONNECTION_TIME =  10000;
     public static String userId = "2";
 
+    public static boolean isExited = true;
+
     public static final String DEBUG_MESSAGE = "server_error";
 
     //PERMISSION CODES

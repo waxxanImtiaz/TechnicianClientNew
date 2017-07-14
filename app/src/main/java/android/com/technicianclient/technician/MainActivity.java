@@ -73,9 +73,11 @@ public class MainActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        sharedPrefFile = PreferencesFactory.preferenceFileExist(this);
-        if (sharedPrefFile.exists())
-            sharedPrefFile.delete();
+        if (SharedFields.isExited) {
+            sharedPrefFile = PreferencesFactory.preferenceFileExist(this);
+            if (sharedPrefFile.exists())
+                sharedPrefFile.delete();
+        }
 
     }
 
