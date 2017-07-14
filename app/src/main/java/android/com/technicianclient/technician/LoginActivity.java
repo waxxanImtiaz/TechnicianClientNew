@@ -342,8 +342,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return;
         } else if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
-
-
+            return;
         }
 
         Customer c = BeanFactory.getCustomer();

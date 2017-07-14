@@ -48,7 +48,7 @@ public class ServerConnection extends AsyncTask<String, Void, String> {
         try {
             //JSONObject object = new JSONObject(result);
 
-            progressDialog2.dismiss();
+           // progressDialog2.dismiss();
 
             JSONObject obj = new JSONObject(result);
 
@@ -92,7 +92,7 @@ public class ServerConnection extends AsyncTask<String, Void, String> {
                 SharedFields.services.put(i, serviceType.getString(String.valueOf(i + 1)));
             }
             Toast.makeText(mContext, "You are logged in succesfully", Toast.LENGTH_SHORT).show();
-            mContext.startActivity(new Intent(mContext,MainActivity.class));
+//            mContext.startActivity(new Intent(mContext,MainActivity.class));
             mContext.finish();
         } catch (Exception e) {
             Log.v("exception", "excp:" + e.getMessage());
@@ -101,6 +101,6 @@ public class ServerConnection extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        progressDialog2 = ProgressDialog.show(mContext, "", "Loading");
+        //progressDialog2 = ProgressDialog.show(mContext, "", "Loading");
     }
 }

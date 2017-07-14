@@ -6,6 +6,7 @@ import android.com.technicianclient.technician.LoginActivity;
 import android.com.technicianclient.technician.beans.Customer;
 import android.com.technicianclient.technician.builder.LoginFormHandler;
 import android.com.technicianclient.technician.contentprovider.SharedFields;
+import android.com.technicianclient.technician.contentprovider.SharedPreferencesDataLoader;
 import android.com.technicianclient.technician.controller.UiController;
 import android.com.technicianclient.technician.factory.BeanFactory;
 import android.content.Context;
@@ -71,21 +72,20 @@ public class UserLoginTask extends AsyncTask<Void, Void, String> {
     }
 
     private boolean isMessageAppeard = false;
+
     @Override
     protected void onPostExecute(final String success) {
 
-        if (progressDialog2 != null)
-            progressDialog2.dismiss();
 
         if (success == null) {
+            hideProgresss();
             Toast.makeText(mContext, "Server error", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
             JSONArray array = new JSONArray(success);
 
-            for(int n = 0; n < array.length(); n++)
-            {
+            for (int n = 0; n < array.length(); n++) {
                 JSONObject object = array.getJSONObject(n);
                 showMessage(object);
             }
@@ -93,20 +93,29 @@ public class UserLoginTask extends AsyncTask<Void, Void, String> {
 
         } catch (JSONException e) {
             Log.v("jsonException", "msg:" + e.toString());
+
             try {
-                if (success.equalsIgnoreCase("null")){
+                if (success.equalsIgnoreCase("null")) {
+                    hideProgresss();
                     Toast.makeText(mContext, "Invalid  username or  password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.v("msg",  e.toString());
+                Log.v("msg", e.toString());
                 showMessage(new JSONObject(success));
-            }catch (JSONException ex){
+            } catch (JSONException ex) {
+                hideProgresss();
             }
         } catch (Exception e) {
+            hideProgresss();
             Log.v("exception", "msg:" + e.toString());
         }
     }
-    public void showMessage(JSONObject object)throws JSONException{
+
+    private void hideProgresss(){
+        if (progressDialog2 != null)
+            progressDialog2.dismiss();
+    }
+    public void showMessage(JSONObject object) throws JSONException {
 
         if (!isMessageAppeard) {
             isMessageAppeard = true;
@@ -121,10 +130,95 @@ public class UserLoginTask extends AsyncTask<Void, Void, String> {
                 service.execute(SharedFields.userId);
 
 
-            }else
+            } else
                 UiController.showDialog("Info:" + object.toString(), mContext);
         }
     }
+
+    class ServerConnection extends AsyncTask<String, Void, String> {
+
+
+        private Activity mContext;
+
+
+        public ServerConnection(Activity mContext) {
+            this.mContext = mContext;
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            GetUserFromServer handler = new GetUserFromServer(mContext);
+            handler.setUrl(SharedFields.userLink);
+            handler.setRequestMethod("POST");
+
+            return handler.setFormParametersAndConnect(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                //JSONObject object = new JSONObject(result);
+
+                // progressDialog2.dismiss();
+
+                JSONObject obj = new JSONObject(result);
+
+                JSONArray userInfo = obj.getJSONArray("user_info");
+                JSONObject serviceType = obj.getJSONObject("service_types");
+                JSONArray cities = obj.getJSONArray("cities_areas");
+
+
+            /*=================SET CUSTOMER DATA===============*/
+                for (int i = 0; i < userInfo.length(); i++) {
+                    JSONObject object = userInfo.getJSONObject(i);
+
+                    Customer cus = new Customer();
+                    cus.setCity(object.getString("city_name"));
+                    cus.setId(object.getString("userid"));
+                    cus.setArea(object.getString("area_name"));
+                    cus.setName(object.getString("name"));
+                    cus.setEmail(object.getString("email"));
+                    cus.setMobile(object.getString("phone"));
+                    cus.setAddress(object.getString("address"));
+                    cus.setPassword(object.getString("password"));
+
+                    BeanFactory.setCustomer(cus);
+                    SharedPreferencesDataLoader.storeCustomerDataToSharedPreferences(mContext);
+                }
+            /*====================SET CITIES===================*/
+
+                for (int i = 0; i < cities.length(); i++) {
+                    JSONArray arry = cities.getJSONArray(i);
+                    for (int j = 0; j < arry.length(); j++) {
+                        JSONObject object = arry.getJSONObject(j);
+
+                        SharedFields.cities.put(Integer.parseInt(object.getString("city_id")), object.getString("city_name"));
+                        SharedFields.areas.put(Integer.parseInt(object.getString("area_id")), object.getString("area_name"));
+                    }
+
+                }
+            /*====================SET SERVICES===================*/
+
+                for (int i = 0; i < serviceType.length(); i++) {
+                    SharedFields.services.put(i, serviceType.getString(String.valueOf(i + 1)));
+                }
+                hideProgresss();
+                Toast.makeText(mContext, "You are logged in succesfully", Toast.LENGTH_SHORT).show();
+//            mContext.startActivity(new Intent(mContext,MainActivity.class));
+                mContext.finish();
+            } catch (Exception e) {
+                Log.v("exception", "excp:" + e.getMessage());
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+            //progressDialog2 = ProgressDialog.show(mContext, "", "Loading");
+        }
+    }
+
 
 }
 
