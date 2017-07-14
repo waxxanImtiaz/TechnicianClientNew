@@ -27,13 +27,13 @@ public class MyAccount extends AppCompatActivity {
     private TextView tvCity;
     private TextView tvMobileNumber;
     private Customer customer;
-    private List<Feedback> feedbacks;
-    private List<Service> service;
-    private List<PaymentHistory> paymentHistories;
-
-    private ListView listPayDetails;
-    private ListView listServicesDetails;
-    private ListView listFeedbackDetails;
+//    private List<Feedback> feedbacks;
+//    private List<Service> service;
+//    private List<PaymentHistory> paymentHistories;
+//
+//    private ListView listPayDetails;
+//    private ListView listServicesDetails;
+//    private ListView listFeedbackDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,10 @@ public class MyAccount extends AppCompatActivity {
         tvMobileNumber = (TextView) findViewById(R.id.tvMobileNumber);
 
 
-        listPayDetails = (ListView) findViewById(R.id.listPayDetails);
-        listServicesDetails = (ListView) findViewById(R.id.listServicesDetails);
-        listFeedbackDetails = (ListView) findViewById(R.id.feedbackDetails);
+
+//        listPayDetails = (ListView) findViewById(R.id.listPayDetails);
+//        listServicesDetails = (ListView) findViewById(R.id.listServicesDetails);
+//        listFeedbackDetails = (ListView) findViewById(R.id.feedbackDetails);
         customer = BeanFactory.getCustomer();
 
         tvEmail.setText(customer.getEmail());
@@ -62,48 +63,48 @@ public class MyAccount extends AppCompatActivity {
         tvMobileNumber.setText(customer.getMobile());
 //        tvGender.setText(customer.getGender());
 
-        feedbacks = BeanFactory.getFeedbacks();
-        service = BeanFactory.getService();
-        paymentHistories = BeanFactory.getPaymentHistories();
-
-        try {
-            List<PaymentHistory> paymentHistories = BeanFactory.getPaymentHistories();
-            Log.i("paymentHistories", "paymentHistories size=" + paymentHistories.size());
-
-            if (paymentHistories == null || paymentHistories.size() <= 0) {
-                findViewById(R.id.tvPaymentHistory).setVisibility(View.GONE);
-                listPayDetails.setVisibility(View.GONE);
-            } else {
-                PymentHistoryAdapter adapter = new PymentHistoryAdapter(MyAccount.this, paymentHistories);
-                listPayDetails.setAdapter(adapter);
-            }
-
-            List<Service> services = BeanFactory.getService();
-
-            Log.i("services", "services size=" + services.size()+",feedback size="+BeanFactory.getFeedbacks().size());
-            if (services.size() <= 0) {
-                findViewById(R.id.tvServiceDetails).setVisibility(View.GONE);
-                listServicesDetails.setVisibility(View.GONE);
-            } else {
-                ServiceDetailsAdapter adapter = new ServiceDetailsAdapter(MyAccount.this, BeanFactory.getService());
-                listServicesDetails.setAdapter(adapter);
-            }
-
-            List<Feedback> feedbacks = BeanFactory.getFeedbacks();
-
-
-            if ( feedbacks.size() <= 0) {
-                findViewById(R.id.tvFeedback).setVisibility(View.GONE);
-                listFeedbackDetails.setVisibility(View.GONE);
-            } else {
-
-                FeedbackDetailsAdapter adapter = new FeedbackDetailsAdapter(MyAccount.this, feedbacks);
-                listFeedbackDetails.setAdapter(adapter);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.i("exception","error:"+e.toString());
-        }
+//        feedbacks = BeanFactory.getFeedbacks();
+//        service = BeanFactory.getService();
+//        paymentHistories = BeanFactory.getPaymentHistories();
+//
+//        try {
+//            List<PaymentHistory> paymentHistories = BeanFactory.getPaymentHistories();
+//            Log.i("paymentHistories", "paymentHistories size=" + paymentHistories.size());
+//
+//            if (paymentHistories == null || paymentHistories.size() <= 0) {
+//                findViewById(R.id.tvPaymentHistory).setVisibility(View.GONE);
+//                listPayDetails.setVisibility(View.GONE);
+//            } else {
+//                PymentHistoryAdapter adapter = new PymentHistoryAdapter(MyAccount.this, paymentHistories);
+//                listPayDetails.setAdapter(adapter);
+//            }
+//
+//            List<Service> services = BeanFactory.getService();
+//
+//            Log.i("services", "services size=" + services.size()+",feedback size="+BeanFactory.getFeedbacks().size());
+//            if (services.size() <= 0) {
+//                findViewById(R.id.tvServiceDetails).setVisibility(View.GONE);
+//                listServicesDetails.setVisibility(View.GONE);
+//            } else {
+//                ServiceDetailsAdapter adapter = new ServiceDetailsAdapter(MyAccount.this, BeanFactory.getService());
+//                listServicesDetails.setAdapter(adapter);
+//            }
+//
+//            List<Feedback> feedbacks = BeanFactory.getFeedbacks();
+//
+//
+//            if ( feedbacks.size() <= 0) {
+//                findViewById(R.id.tvFeedback).setVisibility(View.GONE);
+//                listFeedbackDetails.setVisibility(View.GONE);
+//            } else {
+//
+//                FeedbackDetailsAdapter adapter = new FeedbackDetailsAdapter(MyAccount.this, feedbacks);
+//                listFeedbackDetails.setAdapter(adapter);
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            Log.i("exception","error:"+e.toString());
+//        }
 
     }
 }
