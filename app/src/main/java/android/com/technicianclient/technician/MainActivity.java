@@ -35,6 +35,7 @@ import android.com.technicianclient.technician.contentprovider.SharedFields;
 import android.com.technicianclient.technician.contentprovider.SharedPreferencesDataLoader;
 import android.com.technicianclient.technician.customclass.CustomViewPager;
 import android.com.technicianclient.technician.serverconnetors.UserInfoService;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        sharedPrefFile = PreferencesFactory.preferenceFileExist(this);
+        if (sharedPrefFile.exists())
+            sharedPrefFile.delete();
+
     }
 
 
@@ -204,21 +210,24 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SignUp.class));
             return true;
         } else if (id == R.id.my_account) {
-            UserInfoService service  = new UserInfoService(this);
-            service.execute();
+//            UserInfoService service  = new UserInfoService(this);
+//            service.execute();
+            startActivity(new Intent(MainActivity.this,MyAccount.class));
             return true;
-        }  else if (id == R.id.reward_points) {
-            points = new String[]{"1","2","3","4","5","6","7","8","9","10"};
-            showRewardDialog();
-            return true;
-        } else if (id == R.id.contact_us) {
+        }
+//        else if (id == R.id.reward_points) {
+//            points = new String[]{"1","2","3","4","5","6","7","8","9","10"};
+//            showRewardDialog();
+//            return true;
+//        }
+        else if (id == R.id.contact_us) {
             tabLayout.getTabAt(2).select();
             return true;
         } else if (id == R.id.bind_email) {
             m_Text = SharedMethods.showInputDialog(this, new DialogInnerIntializer() {
                 @Override
                 public void execute(String input) {
-
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.repair_history_message), Toast.LENGTH_LONG).show();
                 }
             });
             return true;

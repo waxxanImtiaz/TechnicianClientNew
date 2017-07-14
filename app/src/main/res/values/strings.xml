@@ -99,5 +99,7 @@
     <string name="shipping_address">Shipping Address:</string>
 
     <string name="forgetPassword">Forget Password</string>
+    <string name="email_message">Please provide  your email address</string>
+    <string name="repair_history_message">Repair history will be sent your email address</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package android.com.technicianclient.technician.contentprovider;
 
 import android.app.Activity;
+import android.com.technicianclient.technician.R;
 import android.com.technicianclient.technician.controller.DialogInnerIntializer;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -43,11 +44,10 @@ public class SharedMethods {
     public static String showInputDialog(Activity activity , final DialogInnerIntializer innerIntializer) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Enter email");
+        builder.setTitle(activity.getResources().getString(R.string.email_message));
 
 // Set up the input
         final EditText input = new EditText(activity);
-        input.setPadding(10,10,10,10);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         builder.setView(input);
