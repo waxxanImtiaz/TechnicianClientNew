@@ -15,13 +15,15 @@ import java.util.Map;
  * Created by Admin on 7/14/2017.
  */
 
-public class ForgetPasswordService extends AsyncTask<String , Void, String> {
+public class FieldValueModifierService extends AsyncTask<String , Void, String> {
 
     private Activity mContext;
     private ProgressDialog progressDialog2;
 
+    private String successMessage;
+    private String failureMessage;
 
-    public ForgetPasswordService(final Activity context) {
+    public FieldValueModifierService(final Activity context) {
         this.mContext = context;
     }
 
@@ -37,8 +39,8 @@ public class ForgetPasswordService extends AsyncTask<String , Void, String> {
             handler.setRequestMethod("POST");
 
             Map<String, String> arguments = new HashMap<>();
-            arguments.put("email", params[0]);
-            arguments.put("forget_password", "true");
+            arguments.put( params[0], params[1]);
+            arguments.put( params[2], "true");
 
 
             return handler.setFormParametersAndConnect(arguments).getString("req_status");
@@ -74,14 +76,29 @@ public class ForgetPasswordService extends AsyncTask<String , Void, String> {
         }
         try {
             if (success.equalsIgnoreCase("success")){
-                Toast.makeText(mContext, "Password sent to your email address", Toast.LENGTH_SHORT).show();
-            }else Toast.makeText(mContext, "Email sent failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, getSuccessMessage(), Toast.LENGTH_SHORT).show();
+            }else Toast.makeText(mContext, getFailureMessage(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.v("exception", "msg:" + e.toString());
         }
     }
 
 
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+
+    public void setSuccessMessage(String successMessage) {
+        this.successMessage = successMessage;
+    }
+
+    public String getFailureMessage() {
+        return failureMessage;
+    }
+
+    public void setFailureMessage(String failureMessage) {
+        this.failureMessage = failureMessage;
+    }
 }
 
 

@@ -1,10 +1,12 @@
 package android.com.technicianclient.technician;
 
 import android.com.technicianclient.technician.contentprovider.SharedFields;
+import android.com.technicianclient.technician.setters.InitializerFieldValueSetter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,9 +19,10 @@ import android.com.technicianclient.technician.beans.Feedback;
 import android.com.technicianclient.technician.beans.PaymentHistory;
 import android.com.technicianclient.technician.factory.BeanFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAccount extends AppCompatActivity {
+public class MyAccount extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvEmail;
     private TextView tvName;
@@ -28,6 +31,7 @@ public class MyAccount extends AppCompatActivity {
     private TextView tvCity;
     private TextView tvMobileNumber;
     private Customer customer;
+    private LinearLayout layoutMobileNumber;
 //    private List<Feedback> feedbacks;
 //    private List<Service> service;
 //    private List<PaymentHistory> paymentHistories;
@@ -47,7 +51,7 @@ public class MyAccount extends AppCompatActivity {
 //        tvGender = (TextView)findViewById(R.id.tvGender);
         tvCity = (TextView) findViewById(R.id.tvCity);
         tvMobileNumber = (TextView) findViewById(R.id.tvMobileNumber);
-
+        layoutMobileNumber = (LinearLayout)findViewById(R.id.layoutMobileNumber);
 
         SharedFields.isExited = false;
 //        listPayDetails = (ListView) findViewById(R.id.listPayDetails);
@@ -62,6 +66,8 @@ public class MyAccount extends AppCompatActivity {
         tvCity.setText(customer.getCity());
 //        }
         tvMobileNumber.setText(customer.getMobile());
+
+        layoutMobileNumber.setOnClickListener(this);
 //        tvGender.setText(customer.getGender());
 
 //        feedbacks = BeanFactory.getFeedbacks();
@@ -107,5 +113,22 @@ public class MyAccount extends AppCompatActivity {
 //            Log.i("exception","error:"+e.toString());
 //        }
 
+    }
+    @Override
+    public void onClick(View view){
+        int id = view.getId();
+
+        switch (id){
+            case R.id.layoutMobileNumber:
+                List<String> values = new ArrayList<>();
+                values.add("Mobile number changed successfully");
+                values.add("Mobile number not changed");
+                values.add("change_phone");
+                values.add("phone");
+
+                InitializerFieldValueSetter setter = new InitializerFieldValueSetter();
+                setter.init(MyAccount.this,values);
+                break;
+        }
     }
 }
