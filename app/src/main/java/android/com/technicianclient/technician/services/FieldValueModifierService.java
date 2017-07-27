@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,10 +23,18 @@ public class FieldValueModifierService extends AsyncTask<String , Void, String> 
 
     private String successMessage;
     private String failureMessage;
-
+    private List<String> form;
     public FieldValueModifierService(final Activity context) {
         this.mContext = context;
+
+
     }
+    public void setFormData(List<String> form){
+        this.form = form;
+        setSuccessMessage(form.get(0));
+        setFailureMessage(form.get(1));
+    }
+
 
 
     @Override
@@ -39,8 +48,11 @@ public class FieldValueModifierService extends AsyncTask<String , Void, String> 
             handler.setRequestMethod("POST");
 
             Map<String, String> arguments = new HashMap<>();
-            arguments.put( params[0], params[1]);
-            arguments.put( params[2], "true");
+            arguments.put( form.get(2), "true");
+            arguments.put( form.get(3), form.get(4));
+            if (params.length == 6){
+                arguments.put( params[5], params[6]);
+            }
 
 
             return handler.setFormParametersAndConnect(arguments).getString("req_status");

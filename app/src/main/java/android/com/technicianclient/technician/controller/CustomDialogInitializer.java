@@ -9,14 +9,11 @@ import android.com.technicianclient.technician.services.FieldValueModifierServic
 
 public class CustomDialogInitializer implements DialogInnerIntializer {
     private FieldValueModifierService service;
-    private String variable;
-    private String flag;
 
-    private Activity activity;
-    public CustomDialogInitializer(FieldValueModifierService service,Activity activity){
+    public CustomDialogInitializer(FieldValueModifierService service){
         this.service = service;
-        this.activity = activity;
     }
+
     @Override
     public void execute(String input) {
 
@@ -24,11 +21,4 @@ public class CustomDialogInitializer implements DialogInnerIntializer {
     }
 
 
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
-
-    public void setVariable(String variable) {
-        this.variable = variable;
-    }
 }
