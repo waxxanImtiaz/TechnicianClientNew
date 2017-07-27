@@ -17,7 +17,7 @@ public class CustomDialogInitializer implements DialogInnerIntializer {
     @Override
     public void execute(String input) {
 
-        service.execute(variable,input,flag);
+        service.execute(input);
     }
 
 

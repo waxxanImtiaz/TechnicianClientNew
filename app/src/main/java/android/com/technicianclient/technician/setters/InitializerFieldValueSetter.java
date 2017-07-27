@@ -14,10 +14,9 @@ import java.util.List;
 
 public class InitializerFieldValueSetter {
     public void init(Activity activity, List<String> values){
-        FieldValueModifierService service = new FieldValueModifierService(activity,values);
-
+        FieldValueModifierService service = new FieldValueModifierService(activity);
+        service.setFormData(values);
         CustomDialogInitializer initializer = new CustomDialogInitializer(service);
         SharedMethods.showInputDialog(activity, initializer);
-
     }
 }

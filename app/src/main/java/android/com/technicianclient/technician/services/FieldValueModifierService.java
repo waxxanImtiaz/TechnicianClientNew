@@ -49,10 +49,10 @@ public class FieldValueModifierService extends AsyncTask<String , Void, String> 
 
             Map<String, String> arguments = new HashMap<>();
             arguments.put( form.get(2), "true");
-            arguments.put( form.get(3), form.get(4));
-            if (params.length == 6){
-                arguments.put( params[5], params[6]);
+            for (int i=3; i<params.length; i++){
+                arguments.put( form.get(i), params[i]);
             }
+
 
 
             return handler.setFormParametersAndConnect(arguments).getString("req_status");

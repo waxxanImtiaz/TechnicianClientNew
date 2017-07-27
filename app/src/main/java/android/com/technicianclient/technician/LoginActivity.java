@@ -43,7 +43,9 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A login screen that offers login via email/password.
@@ -105,6 +107,7 @@ public class LoginActivity extends AppCompatActivity  {
                 values.add("Email sent failed");
                 values.add("forget_password");
                 values.add("email");
+
 
                 InitializerFieldValueSetter setter = new InitializerFieldValueSetter();
                 setter.init(LoginActivity.this,values);
