@@ -51,34 +51,28 @@ public class LoginActivity extends AppCompatActivity  {
     /**
      * Id to identity READ_CONTACTS permission request.
      */
-    private static final int REQUEST_READ_CONTACTS = 0;
+
 
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
-    private SharedPreferences sharedPreferences;
-    private AccessToken accessToken;
     CallbackManager callbackManager;
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+
     private TextView tvDetails;
     private LoginButton loginButton;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
     private Profile profile;
-    private ProgressDialog progressDialog2;
     private TextView tvForgetPassword;
 
     @Override
@@ -134,14 +128,13 @@ public class LoginActivity extends AppCompatActivity  {
         });
 
         LoginManager.getInstance().logOut();
-        mLoginFormView = findViewById(R.id.login_form);
+
         tvDetails = (TextView) findViewById(R.id.tvDetails);
-        mProgressView = findViewById(R.id.login_progress);
+      ;
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
         callbackManager = CallbackManager.Factory.create();
-        accessToken = AccessToken.getCurrentAccessToken();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
