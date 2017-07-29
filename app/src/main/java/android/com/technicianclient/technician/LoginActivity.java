@@ -1,15 +1,13 @@
 package android.com.technicianclient.technician;
 
 import android.app.ProgressDialog;
-import android.com.technicianclient.technician.controller.CustomDialogInitializer;
-import android.com.technicianclient.technician.controller.DialogInnerIntializer;
-import android.com.technicianclient.technician.services.FieldValueModifierService;
 import android.com.technicianclient.technician.setters.InitializerFieldValueSetter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -43,9 +41,7 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A login screen that offers login via email/password.
@@ -110,7 +106,7 @@ public class LoginActivity extends AppCompatActivity  {
 
 
                 InitializerFieldValueSetter setter = new InitializerFieldValueSetter();
-                setter.init(LoginActivity.this,values);
+                setter.init(LoginActivity.this,values,getResources().getString(R.string.email_message), InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
 
 

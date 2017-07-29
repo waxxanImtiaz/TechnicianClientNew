@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity
                 public void execute(String input) {
                     Toast.makeText(MainActivity.this, getResources().getString(R.string.repair_history_message), Toast.LENGTH_LONG).show();
                 }
-            });
+            },getResources().getString(R.string.email_message),InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
             return true;
         } else if (id == R.id.sign_out) {
 

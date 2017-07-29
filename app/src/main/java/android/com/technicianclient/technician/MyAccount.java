@@ -1,9 +1,11 @@
 package android.com.technicianclient.technician;
 
 import android.com.technicianclient.technician.contentprovider.SharedFields;
+import android.com.technicianclient.technician.services.editfield.EditMyAccountField;
 import android.com.technicianclient.technician.setters.InitializerFieldValueSetter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,6 +23,8 @@ import android.com.technicianclient.technician.factory.BeanFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MyAccount extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +36,8 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
     private TextView tvMobileNumber;
     private Customer customer;
     private LinearLayout layoutMobileNumber;
+    private TextView tvEditCity;
+    private TextView tvEditMobile;
 //    private List<Feedback> feedbacks;
 //    private List<Service> service;
 //    private List<PaymentHistory> paymentHistories;
@@ -51,7 +57,13 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
 //        tvGender = (TextView)findViewById(R.id.tvGender);
         tvCity = (TextView) findViewById(R.id.tvCity);
         tvMobileNumber = (TextView) findViewById(R.id.tvMobileNumber);
+        //edit text fields
+//        tvEditCity = (TextView) findViewById(R.id.tvEditCity);
+        tvEditMobile = (TextView) findViewById(R.id.tvEditMobile);
+
         layoutMobileNumber = (LinearLayout)findViewById(R.id.layoutMobileNumber);
+
+
 
         SharedFields.isExited = false;
 //        listPayDetails = (ListView) findViewById(R.id.listPayDetails);
@@ -67,7 +79,7 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
 //        }
         tvMobileNumber.setText(customer.getMobile());
 
-        layoutMobileNumber.setOnClickListener(this);
+        tvEditMobile.setOnClickListener(this);
 //        tvGender.setText(customer.getGender());
 
 //        feedbacks = BeanFactory.getFeedbacks();
@@ -119,7 +131,7 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
         int id = view.getId();
 
         switch (id){
-            case R.id.layoutMobileNumber:
+            case R.id.tvEditMobile:
                 List<String> values = new ArrayList<>();
                 values.add("Mobile number changed successfully");
                 values.add("Mobile number not changed");
@@ -127,9 +139,22 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
                 values.add("phone");
                 values.add("userid");
 
-                InitializerFieldValueSetter setter = new InitializerFieldValueSetter();
-                setter.init(MyAccount.this,values);
+
+                EditMyAccountField setter = new EditMyAccountField();
+                setter.init(MyAccount.this,values,getResources().getString(R.string.phone_message), InputType.TYPE_CLASS_PHONE);
                 break;
+//            case R.id.tvCity:
+//                values = new ArrayList<>();
+//                values.add("City changed successfully");
+//                values.add("City not changed");
+//                values.add("change_city");
+//                values.add("phone");
+//                values.add("userid");
+//
+//
+//                EditMyAccountField setter = new EditMyAccountField();
+//                setter.init(MyAccount.this,values,getResources().getString(R.string.phone_message), InputType.TYPE_CLASS_PHONE);
+//                break;
         }
     }
 }

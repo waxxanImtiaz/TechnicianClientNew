@@ -61,6 +61,9 @@
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">150dp</item>
     </style>
+    <style name="tvEditMyAccount">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
     <style name="tvMyAccount">
         <item name="android:padding">10dp</item>
     </style>

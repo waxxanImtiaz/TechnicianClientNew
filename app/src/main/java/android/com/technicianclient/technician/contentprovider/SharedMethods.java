@@ -41,15 +41,15 @@ public class SharedMethods {
             return false;
         }
     }
-    public static String showInputDialog(Activity activity , final DialogInnerIntializer innerIntializer) {
+    public static String showInputDialog(Activity activity , final DialogInnerIntializer innerIntializer,String message,int inputType) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(activity.getResources().getString(R.string.email_message));
+        builder.setTitle(message);
 
 // Set up the input
         final EditText input = new EditText(activity);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        input.setInputType( inputType);
         builder.setView(input);
 
 // Set up the buttons

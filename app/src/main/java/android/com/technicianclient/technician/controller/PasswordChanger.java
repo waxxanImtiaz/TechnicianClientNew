@@ -7,10 +7,10 @@ import android.com.technicianclient.technician.services.FieldValueModifierServic
  * Created by Classic on 7/25/2017.
  */
 
-public class CustomDialogInitializer implements DialogInnerIntializer {
+public class PasswordChanger implements DialogInnerIntializer {
     private FieldValueModifierService service;
 
-    public CustomDialogInitializer(FieldValueModifierService service){
+    public PasswordChanger(FieldValueModifierService service){
         this.service = service;
     }
 

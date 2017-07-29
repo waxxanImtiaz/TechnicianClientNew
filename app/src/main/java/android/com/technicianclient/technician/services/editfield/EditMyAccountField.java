@@ -1,21 +1,22 @@
-package android.com.technicianclient.technician.setters;
+package android.com.technicianclient.technician.services.editfield;
 
 import android.app.Activity;
 import android.com.technicianclient.technician.contentprovider.SharedMethods;
+import android.com.technicianclient.technician.controller.MyAccountFieldsChanger;
 import android.com.technicianclient.technician.controller.PasswordChanger;
 import android.com.technicianclient.technician.services.FieldValueModifierService;
 
 import java.util.List;
 
 /**
- * Created by Classic on 7/25/2017.
+ * Created by Classic on 7/29/2017.
  */
 
-public class InitializerFieldValueSetter {
+public class EditMyAccountField {
     public void init(Activity activity, List<String> values,String message,int inputType){
         FieldValueModifierService service = new FieldValueModifierService(activity);
         service.setFormData(values);
-        PasswordChanger initializer = new PasswordChanger(service);
+        MyAccountFieldsChanger initializer = new MyAccountFieldsChanger(service);
         SharedMethods.showInputDialog(activity, initializer,message,inputType);
     }
 }

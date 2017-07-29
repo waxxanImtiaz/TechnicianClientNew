@@ -81,10 +81,10 @@
 
 
             <LinearLayout
+                android:id="@+id/layoutCity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:id="@+id/layoutCity">
+                android:orientation="horizontal">
 
                 <TextView
 
@@ -101,6 +101,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:text="iadfadsf" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvEditCity"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--style="@style/tvEditMyAccount"-->
+                    <!--android:layout_width="0dp"-->
+
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.2"-->
+                    <!--android:text="@string/edit" />-->
             </LinearLayout>
 
             <!--<LinearLayout-->
@@ -127,10 +137,10 @@
             <!--</LinearLayout>-->
 
             <LinearLayout
+                android:id="@+id/layoutMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:id="@+id/layoutMobileNumber">
+                android:orientation="horizontal">
 
                 <TextView
 
@@ -145,52 +155,61 @@
                     style="@style/tvMyAccount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.4"
                     android:text="iadfadsf" />
+
+                <TextView
+                    android:id="@+id/tvEditMobile"
+                    style="@style/tvEditMyAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="@string/edit" />
+
             </LinearLayout>
 
             <!--&lt;!&ndash;Payments history details&ndash;&gt;-->
             <!--<TextView-->
-                <!--android:id="@+id/tvPaymentHistory"-->
+            <!--android:id="@+id/tvPaymentHistory"-->
 
-                <!--style="@style/tvDetailsHeading"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/payment_history" />-->
+            <!--style="@style/tvDetailsHeading"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/payment_history" />-->
 
             <!--<ListView-->
-                <!--android:id="@+id/listPayDetails"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="10dp" />-->
+            <!--android:id="@+id/listPayDetails"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp" />-->
 
             <!--&lt;!&ndash;SERVICES DETAILS&ndash;&gt;-->
             <!--<TextView-->
-                <!--style="@style/tvDetailsHeading"-->
-                <!--android:id="@+id/tvServiceDetails"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/service_details" />-->
+            <!--style="@style/tvDetailsHeading"-->
+            <!--android:id="@+id/tvServiceDetails"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/service_details" />-->
 
             <!--<ListView-->
-                <!--android:id="@+id/listServicesDetails"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="10dp" />-->
+            <!--android:id="@+id/listServicesDetails"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp" />-->
 
             <!--&lt;!&ndash;FEEDBACK DETAILS&ndash;&gt;-->
             <!--<TextView-->
-                <!--style="@style/tvDetailsHeading"-->
+            <!--style="@style/tvDetailsHeading"-->
 
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/feedback_details" />-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/feedback_details" />-->
 
             <!--<ListView-->
-                <!--android:id="@+id/feedbackDetails"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="10dp" />-->
+            <!--android:id="@+id/feedbackDetails"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp" />-->
 
 
         </LinearLayout>
